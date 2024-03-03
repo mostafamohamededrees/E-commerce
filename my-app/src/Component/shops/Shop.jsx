@@ -3,6 +3,7 @@ import Catg from './Catg'
 import ShopCart from './ShopCart'
 import './style.css'
 export default function Shop({ shopItems, addToCart }) {
+
     return (
         <>
             <section className='shop background'>

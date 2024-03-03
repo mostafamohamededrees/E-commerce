@@ -20,8 +20,8 @@ const SlideCard = () => {
             <Slider {...settings}>
                 {Sdata.map((value, index) => {
                     return (
-                        <>
-                            <div className='box d_flex top' key={value.id}>
+                        <React.Fragment key={value.id}>
+                            <div className='box d_flex top' >
                                 <div className='left'>
                                     <h1>{value.title}</h1>
                                     <p>{value.desc}</p>
@@ -31,7 +31,7 @@ const SlideCard = () => {
                                     <img style={{ width: "100%" , height: "100%"}} src={value.cover} alt='' />
                                 </div>
                             </div>
-                        </>
+                        </React.Fragment>
                     )
                 })}
             </Slider>

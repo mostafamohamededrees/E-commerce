@@ -3,6 +3,8 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; // Import slick carousel styles
 import "slick-carousel/slick/slick-theme.css"; // Import slick carousel theme
 import { FaHeart, FaRegHeart } from "react-icons/fa"; // Importing heart icons for visual representation
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../../RTK/Cart";
 
 // Component for the next arrow in the slider
 const SampleNextArrow = (props) => {
@@ -29,10 +31,26 @@ const SamplePrevArrow = (props) => {
 };
 
 // Main component for displaying product items in a slider
-export default function FlashCard({ productItems, addToCart }) {
+export default function FlashCard() {
+
+
+  // Mange State From ReduxtoolKit (addToCart) //
+  const dispatch = useDispatch();
+
+  const handleAddToCart = (product) => {
+    dispatch(addToCart(product));
+  };
+
+
+
+
+
+
+  // Mange State From ReduxtoolKit 
+  const productItems = useSelector((state) => state.flash);
+
   // State to manage favourites
   const [favourites, setFavourites] = useState({});
-
   // Function to toggle favourite status
   const toggleFavourite = (id) => {
     setFavourites((prevFavourites) => ({
@@ -86,17 +104,13 @@ export default function FlashCard({ productItems, addToCart }) {
           const isFavourite = favourites[productItem.id] || false;
           return (
             <div className="box" key={index}>
-              {" "}
-              {/* Ensure key is on the root element */}
               <div className="product mtop">
                 <div className="img">
-                  <span className="discount">{productItem.discount}% Off</span>{" "}
-                  {/* Correctly reference productItem */}
+                  <span className="discount">{productItem.discount}% Off</span>
                   <img src={productItem.cover} alt="" />
                   <div
-                    className={`product-like ${
-                      isFavourite ? "is-favourite" : ""
-                    }`}
+                    className={`product-like ${isFavourite ? "is-favourite" : ""
+                      }`}
                     onClick={() => toggleFavourite(productItem.id)}
                     style={{ cursor: "pointer" }}
                   >
@@ -110,10 +124,8 @@ export default function FlashCard({ productItems, addToCart }) {
                   </div>
                 </div>
                 <div className="product-details">
-                  <h3>{productItem.name}</h3>{" "}
-                  {/* Correctly reference productItem */}
+                  <h3>{productItem.name}</h3>
                   <div className="rate">
-                    {/* Example star rating (static for simplicity) */}
                     <i className="fa fa-star"></i>
                     <i className="fa fa-star"></i>
                     <i className="fa fa-star"></i>
@@ -122,7 +134,7 @@ export default function FlashCard({ productItems, addToCart }) {
                   </div>
                   <div className="price">
                     <h4>${productItem.price}.00 </h4>
-                    <button onClick={() => addToCart(productItem)}>
+                    <button onClick={() => handleAddToCart(productItem)}>
                       <i className="fa fa-plus"></i>
                     </button>
                   </div>

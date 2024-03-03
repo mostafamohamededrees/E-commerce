@@ -1,9 +1,26 @@
 import React from 'react'
 import './style.css'
+import { useDispatch, useSelector } from 'react-redux';
+import { addToCart, decreaseQty, deleteCart } from '../RTK/Cart';
 
-export default function Cart({ CartItem, addToCart, decreaseQty }) {
+export default function Cart() {
+
+    // Mange State From ReduxtoolKit (addToCart, decreaseQty) // 
+    const dispatch = useDispatch();
+    const CartItem = useSelector((state) => state.cart.items);
+    const handleAddToCart = (product) => {
+        dispatch(addToCart(product));
+    };
+    const handleDecreaseQty = (id) => {
+        dispatch(decreaseQty(id));
+    };
+    const handleDelateCart = (id) => {
+        dispatch(deleteCart(id));
+    };
+    
+    // Mange State From ReduxtoolKit (addToCart, decreaseQty) //
+
     const totalPrice = CartItem.reduce((price, item) => price + item.qty * item.price, 0)
-    console.log(CartItem)
     return (
         <>
             <section className="cart-items background">
@@ -13,6 +30,7 @@ export default function Cart({ CartItem, addToCart, decreaseQty }) {
                         {
                             CartItem.map((item) => {
                                 const productQty = item.price * item.qty
+                                console.log(productQty)
                                 return (
                                     <div className='cart-list product d_flex' key={item.id}>
                                         <div className='img'>
@@ -27,16 +45,16 @@ export default function Cart({ CartItem, addToCart, decreaseQty }) {
                                         </div>
                                         <div className='cart-items-function'>
                                             <div className='removeCart'>
-                                                <button className='removeCart'>
+                                                <button onClick={()=> handleDelateCart(item.id)} >
                                                     <i className='fa-solid fa-xmark'></i>
                                                 </button>
                                             </div>
 
-                                            <div className='cartControl d_flex'>
-                                                <button className='incCart' onClick={() => addToCart(item)}>
+                                            <div className='cartControl d_flex price'>
+                                                <button className='incCart' onClick={() => handleAddToCart(item)}>
                                                     <i className='fa-solid fa-plus'></i>
                                                 </button>
-                                                <button className='desCart' onClick={() => decreaseQty(item)}>
+                                                <button className='desCart' onClick={() => handleDecreaseQty(item.id)}>
                                                     <i className='fa-solid fa-minus'></i>
                                                 </button>
                                             </div>

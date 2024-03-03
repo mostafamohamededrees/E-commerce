@@ -69,9 +69,9 @@ export default function Categories() {
                 {
                     data.map((item, index) => {
                         return (
-                            <div className="box f_flex" key={index}>
+                            <div className="box  f_flex" key={index}>
                                 <img src={item.cateImg} alt="img" />
-                                <span>{item.cateName}</span>
+                                <span >{item.cateName}</span>
                             </div>
                         )
                     })

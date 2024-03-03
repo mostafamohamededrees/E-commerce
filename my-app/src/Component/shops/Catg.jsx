@@ -4,6 +4,7 @@ import cat1 from "../../Assets/images/Shops/cat-1.png"
 import cat2 from "../../Assets/images/Shops/cat-2.png"
 
 
+
 const Catg = () => {
   const data = [
     {
@@ -36,6 +37,7 @@ const Catg = () => {
       <div className='category'>
         <div className='chead d_flex'>
           <h1>Brands </h1>
+          <div></div>
           <h1>Shops </h1>
         </div>
         {data.map((value, index) => {

@@ -31,14 +31,3 @@
   margin: auto;
 }
 
-@media (max-width: 768px) {
-  .home .category {
-    display: none;
-  }
-  .home .container {
-    flex-direction: column;
-  }
-  .home .contentWidth {
-    width: 100%;
-  }
-}

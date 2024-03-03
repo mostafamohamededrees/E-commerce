@@ -2,14 +2,17 @@
   padding: 30px;
   height: 90vh;
 }
+.chead {
+  position: relative;
+}
 .chead h1 {
   font-size: 20px;
   margin-bottom: 20px;
 }
-
-.chead h1:nth-child(1) {
-  border-right: 3px solid rgba(0, 0, 0, 0.5);
-  padding-right: 40px;
+.chead div {
+  width: 2px;
+  height: 25px;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 .chead h1:nth-child(2) {
   opacity: 0.5;
@@ -62,14 +65,28 @@
   box-shadow: rgb(43 52 69 / 10%) 0px 4px 16px;
 }
 
-@media  (max-width: 768px) {
- .shop .category{
-  display: none;
- }
- .shop .contentWidth {
-   width: 100%;
-   margin: inherit;
- }
-  
-  
+@media (max-width: 768px) {
+  .shop .shop .contentWidth {
+    width: 100%;
+    margin: inherit;
+  }
+  .category {
+    display: none !important;
+  }
+}
+@media screen and (max-width: 992px) {
+  .category .box {
+    width: fit-content;
+  }
+  .category {
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .chead,
+  .box button {
+    display: none;
+  }
 }

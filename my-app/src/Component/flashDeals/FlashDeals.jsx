@@ -1,7 +1,7 @@
 import React from 'react'
 import FlashCard from './FlashCard'
 
-export default function FlashDeals({ productItems, addToCart }) {
+export default function FlashDeals({  addToCart }) {
     return (
         <>
             <section className='flash background'>
@@ -10,7 +10,7 @@ export default function FlashDeals({ productItems, addToCart }) {
                         <i className='fa fa-bolt'></i>
                         <h1>Flash Delas</h1>
                     </div>
-                    <FlashCard addToCart={addToCart} productItems={productItems} />
+                    <FlashCard addToCart={addToCart}  />
                 </div>
             </section>
         </>
